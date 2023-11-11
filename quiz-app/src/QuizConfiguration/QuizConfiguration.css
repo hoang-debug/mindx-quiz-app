@@ -1,0 +1,42 @@
+.quiz-configuration-form {
+    /* Use a different color scheme */
+    background-color: #f5f5f5;
+    color: #333333;
+  
+    /* Use a different font */
+    font-family: sans-serif;
+  
+    /* Use more spacing */
+    padding: 20px;
+  
+    /* Add some visual interest */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .quiz-configuration-form label {
+    /* Use a different font */
+    font-weight: bold;
+  }
+  
+  .quiz-configuration-form select,
+  .quiz-configuration-form input-number {
+    /* Use a different font */
+    font-family: inherit;
+    /* Use more spacing */
+    margin-bottom: 10px;
+  }
+  
+  .quiz-configuration-form button {
+    /* Use a different color scheme */
+    background-color: #007bff;
+    color: white;
+  
+    /* Use a different font */
+    font-weight: bold;
+  
+    /* Use more spacing */
+    margin-top: 10px;
+  }
+  
+  
