@@ -3,7 +3,7 @@ import { Button, Form, InputNumber, Select } from "antd";
 import axios from "axios";
 import "./QuizConfiguration.css";
 
-const QuizConfiguration = ({setDuration, setQuizList}) => {
+const QuizConfiguration = ({setDuration, setQuizList, setLoading}) => {
   const [quizConfiguration, setQuizConfiguration] = useState({
     category: "",
     difficulty: "",
@@ -38,6 +38,7 @@ const QuizConfiguration = ({setDuration, setQuizList}) => {
 
 
 const handleSubmit = async () => {
+    setLoading(true)
     setDuration(quizConfiguration.duration);
     // Fetch the quiz questions from the Open Trivia DB API
     const response = await axios.get('https://opentdb.com/api.php', {
@@ -54,10 +55,12 @@ const handleSubmit = async () => {
       // Start the quiz
       // TODO: Implement the quiz logic here
       setQuizList(response.data.results);
-      console.log(response.data.results, "response.data.results");
+      setLoading(false)
     } else {
       // Show an error message to the user
       console.log('Error fetching quiz questions');
+      setLoading(false)
+
     }
   };
   

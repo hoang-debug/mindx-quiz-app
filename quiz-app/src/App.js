@@ -3,16 +3,20 @@ import './App.css';
 import QuizConfiguration from './QuizConfiguration/QuizConfiguration';
 import { useState } from 'react';
 import Quiz from './Quiz/Quiz';
+import { Spin } from 'antd';
 
 function App() {
   const [duration, setDuration] = useState(0);
   const [quizList, setQuizList] = useState([]);
-
-  console.log(duration, "duration")
+  const [loading, setLoading] = useState(false);
   return (
     <div className="App">
-      {quizList.length <= 0 && <QuizConfiguration setDuration={setDuration} setQuizList={setQuizList}/>}
+      <Spin spinning={loading}>
+
+      {quizList.length <= 0 && <QuizConfiguration setDuration={setDuration} setQuizList={setQuizList} setLoading={setLoading}/>}
       {quizList.length > 0 && <Quiz quizList={quizList} duration={duration} setQuizList={setQuizList}/>}
+      </Spin>
+    
     </div>
   );
 }

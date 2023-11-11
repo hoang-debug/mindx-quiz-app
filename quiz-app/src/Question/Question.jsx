@@ -38,11 +38,11 @@ const Question = ({ question, remainingTime, handleNextQuestion, setIsWrongAnswe
 
   const handleSubmit = () => {
     if (selectedAnswer === question.correct_answer) {
-      handleNextQuestion();
-      success();
+        success();
+        handleNextQuestion();
     } else {
+        error()
       setIsWrongAnswer(true);
-      error()
     }
   };
 
