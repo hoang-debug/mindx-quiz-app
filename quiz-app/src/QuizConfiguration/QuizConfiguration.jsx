@@ -35,7 +35,7 @@ const QuizConfiguration = ({setDuration, setQuizList}) => {
       setCategories(categories);
     });
   }, []);
-console.log(categories, "categories");
+
 
 const handleSubmit = async () => {
     setDuration(quizConfiguration.duration);
@@ -54,6 +54,7 @@ const handleSubmit = async () => {
       // Start the quiz
       // TODO: Implement the quiz logic here
       setQuizList(response.data.results);
+      console.log(response.data.results, "response.data.results");
     } else {
       // Show an error message to the user
       console.log('Error fetching quiz questions');
@@ -124,6 +125,8 @@ const handleSubmit = async () => {
             setQuizConfiguration({ ...quizConfiguration, amount: value })
           }
           placeholder="Amount"
+          min={1}
+      max={100}
         />
       </Form.Item>
 

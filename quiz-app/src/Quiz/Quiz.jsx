@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Question from "../Question/Question";
 import { Button } from "antd";
 
-const Quiz = ({ quizList, duration }) => {
+const Quiz = ({ quizList, duration, setQuizList }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [remainingTime, setRemainingTime] = useState(duration); // Set the duration of the quiz in seconds
   const [isWrongAnswer, setIsWrongAnswer] = useState(false);
@@ -28,6 +28,7 @@ const Quiz = ({ quizList, duration }) => {
     if (currentQuestionIndex === quizList.length - 1) {
       // Show the results of the quiz
       // TODO: Implement the logic to show the results of the quiz
+      setQuizList([])
     } else {
       // Go to the next question
       setCurrentQuestionIndex(currentQuestionIndex + 1);

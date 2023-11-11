@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Radio, Button, Row, Col } from "antd";
+import { Radio, Button, Row, Col, message } from "antd";
 
 const Question = ({ question, remainingTime, handleNextQuestion, setIsWrongAnswer }) => {
   const [questionList, setQuestionList] = useState(shuffleArray([...question.incorrect_answers, question.correct_answer]));
   const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Correct answer',
+    });
+  };
 
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Incorrect answer :(',
+    });
+  };
   if (remainingTime === 0) {
     setQuestionList([question.correct_answer]);
   }
@@ -26,8 +39,10 @@ const Question = ({ question, remainingTime, handleNextQuestion, setIsWrongAnswe
   const handleSubmit = () => {
     if (selectedAnswer === question.correct_answer) {
       handleNextQuestion();
+      success();
     } else {
       setIsWrongAnswer(true);
+      error()
     }
   };
 
@@ -48,11 +63,12 @@ const Question = ({ question, remainingTime, handleNextQuestion, setIsWrongAnswe
           ))}
         </Radio.Group>
       )}
+{contextHolder}
 
-      {question.type === "true/false" && (
+      {question.type === "boolean" && (
         <Radio.Group value={selectedAnswer} onChange={handleChange}>
-          <Radio value="true">True</Radio>
-          <Radio value="false">False</Radio>
+          <Radio value="True">True</Radio>
+          <Radio value="False">False</Radio>
         </Radio.Group>
       )}
 <Row>
